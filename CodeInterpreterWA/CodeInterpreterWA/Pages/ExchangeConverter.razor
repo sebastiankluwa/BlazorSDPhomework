@@ -1,0 +1,56 @@
+﻿<div class="form-group">
+    <div class="col-md-4">
+        <label>Multiplier</label>
+        <input type="number" class="form-control" placeholder="Multiplier ..." @bind="Multiplier" @bind:event="oninput" />
+    </div>
+    <div class="col-md-4">
+        <label>Value</label>
+        <input type="number" class="form-control" placeholder="Value ..." @bind="Value" @bind:event="oninput" />
+    </div>
+
+</div>
+<div class="row blockquote mt-5">
+    <span>@MultipliedValue zł</span>
+</div>
+<div class="row blockquote mt-5">
+    <span>$ @Value</span>
+</div>
+
+
+@code {
+    double? _value = null;
+    double? _multiplier = 3.96;
+    double? _multipliedval = null;
+
+    public double? Multiplier
+    {
+        get => _multiplier;
+        set
+        {
+            _multiplier = value;
+            ConvertValue();
+        }
+    }
+
+    public double? Value
+    {
+        get => _value;
+        set
+        {
+            _value = value;
+            ConvertValue();
+        }
+    }
+
+    public double? MultipliedValue
+    {
+        get => _multipliedval;
+        set { }
+    }
+
+    private void ConvertValue()
+    {
+        _multipliedval = Multiplier * _value;
+    }
+
+}
